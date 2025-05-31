@@ -1,0 +1,64 @@
+﻿@page "/register"
+@inject UserService userService
+@inject UserSessionService sessionService
+@inject NavigationManager navigationManager
+@inject IJSRuntime JSRuntime
+
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card shadow-sm p-5" style="max-width: 400px; width: 100%;">
+        <h2 class="mb-4 text-center text-primary">Register</h2>
+
+        <EditForm Model="@registerModel" OnValidSubmit="@HandleRegister">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Name</label>
+                <InputText id="text" class="form-control" @bind-Value="registerModel.Name" placeholder="John Doe" />
+                <ValidationMessage For="@(() => registerModel.Name)" />
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <InputText id="email" type="email" class="form-control" @bind-Value="registerModel.Email" placeholder="you@example.com" />
+                <ValidationMessage For="@(() => registerModel.Email)" />
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <InputText id="password" type="password" class="form-control" @bind-Value="registerModel.Password" placeholder="Enter your password" />
+                <ValidationMessage For="@(() => registerModel.Password)" />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+        </EditForm>
+
+        <div class="text-center mt-3">
+            <a href="/register" class="text-decoration-none">Already have an account? Login</a>
+        </div>
+
+    </div>
+</div>
+
+@code {
+    private RegisterModel registerModel = new RegisterModel();
+
+    private async Task HandleRegister()
+    {
+        AWEElectronicsBlazorApp.Core.Models.Customer newcustomer = new AWEElectronicsBlazorApp.Core.Models.Customer(registerModel.Name, registerModel.Email, registerModel.Password);
+        Data.DataStore.Users.Add(newcustomer);
+        await JSRuntime.InvokeVoidAsync("alert", $"{registerModel.Name} Registered! Please Login now.");
+        navigationManager.NavigateTo("/login");
+    }
+
+    public class RegisterModel
+    {
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Email is required.")]
+        [System.ComponentModel.DataAnnotations.EmailAddress(ErrorMessage = "Invalid email format.")]
+        public string Email { get; set; } = "";
+
+        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Password is required.")]
+        public string Password { get; set; } = "";
+
+        public string Name { get; set; } = "";
+    }
+}
