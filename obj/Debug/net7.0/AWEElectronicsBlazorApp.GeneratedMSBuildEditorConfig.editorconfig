@@ -9,93 +9,93 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AWEElectronicsBlazorApp
 build_property.RootNamespace = AWEElectronicsBlazorApp
-build_property.ProjectDir = /Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/
+build_property.ProjectDir = /Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp
+build_property.MSBuildProjectDirectory = /Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/App.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/AddProducts.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/AddProducts.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkUHJvZHVjdHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Admin.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Admin.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Cart.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Cart.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2FydC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Checkout.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Checkout.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2hlY2tvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Counter.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Index.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Login.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Logout.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Logout.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9nb3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Products.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Products.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZHVjdHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Receipt.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Receipt.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVjZWlwdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Register.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Reports.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Reports.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVwb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/UnderConstruction.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/UnderConstruction.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVW5kZXJDb25zdHJ1Y3Rpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Shared/LoginDisplay.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0xvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Shared/SurveyPrompt.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/_Imports.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Shared/MainLayout.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-l9kme38b69
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Shared/NavMenu.razor]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-aheaac99ia
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/Error.cshtml]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/Pages/_Host.cshtml]
+[/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

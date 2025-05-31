@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/AWEElectronicsBlazorApp.csproj": {}
+    "/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/AWEElectronicsBlazorApp.csproj": {}
   },
   "projects": {
-    "/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/AWEElectronicsBlazorApp.csproj": {
+    "/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/AWEElectronicsBlazorApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/AWEElectronicsBlazorApp.csproj",
+        "projectUniqueName": "/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/AWEElectronicsBlazorApp.csproj",
         "projectName": "AWEElectronicsBlazorApp",
-        "projectPath": "/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/AWEElectronicsBlazorApp.csproj",
-        "packagesPath": "/Users/chiragluitel/.nuget/packages/",
-        "outputPath": "/Users/chiragluitel/Documents/Projects/BLAZOR/AWEElectronicsBlazorApp/obj/",
+        "projectPath": "/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/AWEElectronicsBlazorApp.csproj",
+        "packagesPath": "/Users/sarthakpradhan/.nuget/packages/",
+        "outputPath": "/Users/sarthakpradhan/Desktop/UNI/sem4/SoftwareArch/code/COS30003/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/chiragluitel/.nuget/NuGet/NuGet.Config"
+          "/Users/sarthakpradhan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/sdk/7.0.313/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -57,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.313/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     }
