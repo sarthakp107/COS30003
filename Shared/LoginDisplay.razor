@@ -1,0 +1,33 @@
+﻿@inject UserSessionService SessionService
+@inject NavigationManager NavigationManager
+
+<div class="text-end">
+    @if (SessionService.IsLoggedIn)
+    {
+        <span class="text-light me-3">Hello, @SessionService.CurrentUser?.Name!</span>
+        <button class="btn btn-sm btn-outline-light" @onclick="HandleLogout">Log out</button>
+    }
+    else
+    {
+        <a href="login" class="btn btn-sm btn-primary">Log in</a>
+    }
+</div>
+
+
+@code {
+    protected override void OnInitialized()
+    {
+        SessionService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        SessionService.OnChange -= StateHasChanged;
+    }
+
+    private void HandleLogout()
+    {
+        SessionService.SetCurrentUser(null);
+        NavigationManager.NavigateTo("/"); // Go to home page after logout
+    }
+}
