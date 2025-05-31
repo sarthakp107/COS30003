@@ -11,10 +11,10 @@ Team Members:
 
 Use ``` dotnet run``` on your terminal
 
-Login as a customer using 
+## Login as a customer using 
 email: ``` sarthak@email.com```
 password: ``` pass1```
 
-Login as an admin using 
+## Login as an admin using 
 email: ``` prabesh@email.com```
 password: ``` admin1```
