@@ -1,0 +1,107 @@
+﻿@page "/admin/addproducts"
+@inject StoreCatalogue Catalogue
+@inject UserSessionService SessionService
+
+@if (!SessionService.IsAdmin)
+{
+    <div class="alert alert-danger mt-4">
+        <h4 class="alert-heading">Access Denied</h4>
+        <p>You are not authorized to access this page.</p>
+    </div>
+}
+else
+{
+    <div class="container mt-5" style="max-width:600px;">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Add New Product</h4>
+            </div>
+            <div class="card-body">
+                <EditForm Model="@newProductInput" OnValidSubmit="HandleAddProduct">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <div class="mb-3">
+                        <label class="form-label">Product Name</label>
+                        <InputText class="form-control" @bind-Value="newProductInput.Name" />
+                        <ValidationMessage For="@(() => newProductInput.Name)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <InputText class="form-control" @bind-Value="newProductInput.Category" />
+                        <ValidationMessage For="@(() => newProductInput.Category)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <InputTextArea class="form-control" @bind-Value="newProductInput.Description" />
+                        <ValidationMessage For="@(() => newProductInput.Description)" />
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Price ($)</label>
+                            <InputNumber class="form-control" @bind-Value="newProductInput.Price" step="0.01" />
+                            <ValidationMessage For="@(() => newProductInput.Price)" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Stock</label>
+                            <InputNumber class="form-control" @bind-Value="newProductInput.Stock" />
+                            <ValidationMessage For="@(() => newProductInput.Stock)" />
+                        </div>
+                    </div>
+
+                    <div class="mt-4 d-grid">
+                        <button type="submit" class="btn btn-success btn-lg">Add Product</button>
+                    </div>
+                </EditForm>
+
+                @if (!string.IsNullOrEmpty(successMessage))
+                {
+                    <div class="alert alert-success mt-3">@successMessage</div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private NewProductInputModel newProductInput = new();
+    private string? successMessage;
+
+    private void HandleAddProduct()
+    {
+        var product = new AWEElectronicsBlazorApp.Core.Models.Product(
+            newProductInput.Name!,
+            newProductInput.Description!,
+            newProductInput.Price,
+            newProductInput.Category!
+        );
+
+        Catalogue.AddProduct(product);
+        Data.DataStore.Stock[product] = newProductInput.Stock;
+
+        successMessage = $"Product '{product.Name}' added successfully!";
+        newProductInput = new(); // reset
+    }
+
+    public class NewProductInputModel
+    {
+        [System.ComponentModel.DataAnnotations.Required]
+        public string? Name { get; set; }
+
+        public string? Category { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Required]
+        public string? Description { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than 0")]
+        public decimal Price { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.Range(0, int.MaxValue, ErrorMessage = "Stock must be 0 or more")]
+        public int Stock { get; set; }
+    }
+}

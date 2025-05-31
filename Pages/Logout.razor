@@ -1,0 +1,30 @@
+﻿@page "/logout"
+@inject UserSessionService SessionService
+@inject NavigationManager NavigationManager
+
+<div class="d-flex flex-column justify-content-center align-items-center vh-100 text-center px-3">
+    <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+        <h2 class="mb-3 text-primary">You have been logged out</h2>
+        <p class="mb-4 text-muted">
+            Thank you for visiting AWE Electronics Store.<br />
+            We hope to see you again soon!
+        </p>
+
+        <button class="btn btn-lg btn-success w-100" @onclick="NavigateToLogin">
+            Log In Again
+        </button>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        // Clear user session on page load
+        SessionService.SetCurrentUser(null);
+    }
+
+    private void NavigateToLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+}

@@ -1,0 +1,159 @@
+﻿@page "/checkout"
+@inject UserSessionService SessionService
+@inject Inventory Inventory
+@inject PaymentService PaymentService
+@inject NavigationManager NavigationManager
+@inject IEnumerable<IPaymentMethod> AvailablePaymentMethods
+@inject IJSRuntime JSRuntime
+
+<h2 class="text-center my-4">💳 Checkout</h2>
+
+@if (!SessionService.IsCustomer || SessionService.CurrentCart == null || !SessionService.CurrentCart.Items.Any())
+{
+    <div class="alert alert-warning text-center">
+        Your cart is empty or you're not logged in. You cannot proceed to checkout.
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" @onclick='() => NavigationManager.NavigateTo("/products")'>
+            <i class="bi bi-cart-plus me-1"></i> Go Shopping
+        </button>
+    </div>
+}
+else if (currentOrder == null)
+{
+    <div class="alert alert-info text-center">
+        Preparing your order...
+    </div>
+}
+else
+{
+    <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white fw-bold">
+            Order Summary
+        </div>
+        <div class="card-body">
+            <p><strong>Order ID:</strong> @currentOrder.OrderId</p>
+            <p><strong>Customer:</strong> @currentOrder.Customer.Name</p>
+
+            <ul class="list-group mb-3">
+                @foreach (var item in currentOrder.Products)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="fw-semibold">@item.Value × @item.Key.Name</span>
+                        </div>
+                        <span class="text-nowrap">$@item.Key.Price.ToString("F2")</span>
+                    </li>
+                }
+            </ul>
+
+            <h4 class="text-end">Total: <span class="text-success">$@currentOrder.TotalCost.ToString("F2")</span></h4>
+        </div>
+    </div>
+
+    @if (string.IsNullOrEmpty(paymentMessage))
+    {
+        <div class="card shadow">
+            <div class="card-header bg-secondary text-white fw-bold">
+                Select Payment Method
+            </div>
+            <div class="card-body">
+                @if (stockErrorMessage != null)
+                {
+                    <div class="alert alert-danger">
+                        @stockErrorMessage
+                    </div>
+                }
+                else
+                {
+                    <div class="list-group">
+                        @foreach (var method in AvailablePaymentMethods)
+                        {
+                            <button type="button"
+                                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                    @onclick="() => ProcessPayment(method)">
+                                Pay with @method.Name
+                                <i class="bi bi-credit-card text-primary"></i>
+                            </button>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert @(isPaymentSuccess ? "alert-success" : "alert-danger") mt-4">
+            <p>@paymentMessage</p>
+            @if (isPaymentSuccess)
+            {
+                <button class="btn btn-outline-info" @onclick='() => NavigationManager.NavigateTo("/products")'>
+                    <i class="bi bi-arrow-left me-1"></i> Continue Shopping
+                </button>
+            }
+        </div>
+    }
+}
+
+@code {
+    private Order? currentOrder;
+    private string? stockErrorMessage;
+    private string? paymentMessage;
+    private bool isPaymentSuccess = false;
+
+    protected override void OnInitialized()
+    {
+        if (SessionService.IsCustomer && SessionService.CurrentCart?.Items?.Any() == true)
+        {
+            foreach (var item in SessionService.CurrentCart.Items)
+            {
+                if (!Inventory.CheckStock(item.Key, item.Value))
+                {
+                    stockErrorMessage = $"Stock update: Only {Inventory.GetStockLevel(item.Key)} units of {item.Key.Name} are available. Please update your cart.";
+                    return;
+                }
+            }
+
+            currentOrder = SessionService.CurrentCart.ProceedToCheckout();
+        }
+    }
+
+    private async Task ProcessPayment(IPaymentMethod paymentMethod)
+    {
+        if (currentOrder == null || stockErrorMessage != null) return;
+
+        bool simulateSuccess = await JSRuntime.InvokeAsync<bool>(
+            "confirm", $"Simulate a SUCCESSFUL payment with {paymentMethod.Name} for ${currentOrder.TotalCost:F2}?"
+        );
+
+        var transaction = new Transaction(currentOrder.OrderId, currentOrder.TotalCost, simulateSuccess, paymentMethod.Name,
+            simulateSuccess ? "Payment Approved (Simulated)" : "Payment Declined (Simulated)");
+
+        AWEElectronicsBlazorApp.Data.DataStore.Transactions.Add(transaction);
+
+        if (transaction.IsSuccess)
+        {
+            currentOrder.Status = "Payment Successful - Awaiting Shipment";
+            var receipt = new AWEElectronicsBlazorApp.Core.Models.Receipt(transaction);
+            AWEElectronicsBlazorApp.Data.DataStore.Receipts.Add(receipt);
+            AWEElectronicsBlazorApp.Data.DataStore.Orders.Add(currentOrder);
+
+
+            foreach (var item in currentOrder.Products)
+            {
+                Inventory.ReduceStock(item.Key, item.Value);
+            }
+
+            SessionService.SetLastReceipt(receipt);
+            SessionService.ClearCart();
+
+            NavigationManager.NavigateTo("/receipt");
+        }
+        else
+        {
+            currentOrder.Status = "Payment Failed";
+            isPaymentSuccess = false;
+            paymentMessage = "Payment Failed. Please try another method or check your details.";
+        }
+    }
+}

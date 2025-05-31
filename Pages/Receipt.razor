@@ -1,0 +1,45 @@
+﻿@page "/receipt"
+@inject UserSessionService SessionService
+@inject NavigationManager NavigationManager
+
+<h3 class="text-center my-4">Receipt</h3>
+
+@if (SessionService.LastReceipt == null)
+{
+    <div class="alert alert-warning text-center">
+        No recent receipt found.
+    </div>
+    <div class="text-center">
+        <a class="btn btn-primary" href="/products">Back to Shopping</a>
+    </div>
+}
+else
+{
+    var receipt = SessionService.LastReceipt;
+
+    <div class="card mx-auto shadow" style="max-width: 600px;">
+        <div class="card-header bg-success text-white text-center">
+            <strong>Receipt ID: @receipt.ReceiptId</strong>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-5">Issue Date</dt>
+                <dd class="col-sm-7">@receipt.IssueDate.ToString("f")</dd>
+
+                <dt class="col-sm-5">Order ID</dt>
+                <dd class="col-sm-7">@receipt.OrderId</dd>
+
+                <dt class="col-sm-5">Transaction ID</dt>
+                <dd class="col-sm-7">@receipt.TransactionId</dd>
+
+                <dt class="col-sm-5">Amount Paid</dt>
+                <dd class="col-sm-7 text-success fw-bold">$@receipt.AmountPaid.ToString("F2")</dd>
+            </dl>
+
+            <div class="text-center mt-4">
+                <p>Thank you for your purchase!</p>
+                <NavLink class="btn btn-primary" href="/products">Back to Shopping</NavLink>
+            </div>
+        </div>
+    </div>
+}

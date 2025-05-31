@@ -1,0 +1,70 @@
+﻿@page "/admin/reports"
+@inject UserSessionService SessionService
+@using AWEElectronicsBlazorApp.Core.Models
+@using AWEElectronicsBlazorApp.Data
+
+<h2 class="text-center my-4">📦 Order Reports</h2>
+
+@if (!SessionService.IsAdmin)
+{
+    <div class="alert alert-danger text-center">
+        <i class="bi bi-shield-lock-fill me-2"></i>
+        Access denied. Admins only.
+    </div>
+}
+else if (orders == null || !orders.Any())
+{
+    <div class="alert alert-warning text-center">
+        <i class="bi bi-exclamation-circle-fill me-2"></i>
+        No orders have been placed yet.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Order Date</th>
+                    <th>Items</th>
+                    <th>Total ($)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in orders)
+                {
+                    <tr>
+                        <td>@order.OrderId</td>
+                        <td>@order.Customer.Name</td>
+                        <td>@order.OrderDate.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td class="text-start">
+                            <ul class="mb-0">
+                                @foreach (var item in order.Products)
+                                {
+                                    <li>@item.Value x @item.Key.Name (@item.Key.Price.ToString("F2") each)</li>
+                                }
+                            </ul>
+                        </td>
+                        <td>@order.TotalCost.ToString("F2")</td>
+                        <td>@order.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private List<Order>? orders;
+
+    protected override void OnInitialized()
+    {
+        if (SessionService.IsAdmin)
+        {
+            orders = DataStore.Orders;
+        }
+    }
+}

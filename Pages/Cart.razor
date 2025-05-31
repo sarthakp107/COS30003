@@ -1,0 +1,83 @@
+﻿@page "/cart"
+@inject UserSessionService SessionService
+@inject NavigationManager NavigationManager
+
+<h2 class="text-center my-4">🛒 Your Shopping Cart</h2>
+
+@if (!SessionService.IsCustomer)
+{
+    <div class="alert alert-warning text-center">
+        Please <a href="login" class="alert-link">log in</a> as a customer to view your cart.
+    </div>
+}
+else if (SessionService.CurrentCart == null || !SessionService.CurrentCart.Items.Any())
+{
+    <div class="alert alert-info text-center">
+        Your shopping cart is empty. <a href="products" class="alert-link">Go shopping!</a>
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in SessionService.CurrentCart.Items)
+                {
+                    <tr>
+                        <td>@item.Key.Name</td>
+                        <td class="text-nowrap">$@item.Key.Price.ToString("F2")</td>
+                        <td>@item.Value</td>
+                        <td class="text-nowrap">$@( (item.Key.Price * item.Value).ToString("F2") )</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-danger" @onclick="() => SessionService.RemoveFromCart(item.Key, 1)">
+                                <i class="bi bi-dash-circle-fill me-1"></i>Remove One
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot class="table-borderless">
+                <tr>
+                    <td colspan="3" class="text-end fw-bold">Total:</td>
+                    <td class="fw-bold text-nowrap">$@SessionService.CurrentCart.GetTotalCost().ToString("F2")</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+        <button class="btn btn-outline-warning me-3" @onclick="() => SessionService.ClearCart()">
+            <i class="bi bi-trash3-fill me-1"></i>Clear Cart
+        </button>
+        <button class="btn btn-success" @onclick="GoToCheckout">
+            <i class="bi bi-credit-card-fill me-1"></i>Proceed to Checkout
+        </button>
+    </div>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        SessionService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        SessionService.OnChange -= StateHasChanged;
+    }
+
+    private void GoToCheckout()
+    {
+        NavigationManager.NavigateTo("/checkout");
+    }
+}
